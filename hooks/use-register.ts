@@ -27,11 +27,16 @@ export default function useRegister() {
     register({ first_name, last_name, email, password, re_password })
       .unwrap()
       .then(() => {
-        toast.success("Please check email to verify account");
+        toast.success(
+          "Registro exitoso. Te hemos enviado un link al correo que nos has proporcionado para completar el proceso de activación de tu cuenta",
+          {
+            autoClose: 7000,
+          }
+        );
         router.push("/auth/login");
       })
       .catch(() => {
-        toast.error("Failed to register account");
+        toast.error("Ha ocurrido un error durante el proceso de registro");
       });
   };
 
