@@ -8,19 +8,19 @@ export default function LoginForm() {
 
   const config = [
     {
-      labelText: "Email Address",
+      labelText: "Direccion de correo elctrónico",
       labelId: "email",
       type: "email",
       value: email,
       required: true,
     },
     {
-      labelText: "Password",
+      labelText: "Contraseña",
       labelId: "password",
       type: "password",
       value: password,
       link: {
-        linkText: "Forgot Password?",
+        linkText: "Olvidaste tu contraseña?",
         linkUrl: "/password-reset",
       },
       required: true,
@@ -30,7 +30,7 @@ export default function LoginForm() {
     <Form
       config={config}
       isLoading={isLoading}
-      btnText="Log in"
+      btnText="Entrar"
       onChange={onChange}
       onSubmit={onSubmit}
     />
