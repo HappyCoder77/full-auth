@@ -17,35 +17,35 @@ export default function RegisterForm() {
 
   const config = [
     {
-      labelText: "First Name",
+      labelText: "Nombre",
       labelId: "first_name",
       type: "text",
       value: first_name,
       required: true,
     },
     {
-      labelText: "Last Name",
+      labelText: "Apellido",
       labelId: "last_name",
       type: "text",
       value: last_name,
       required: true,
     },
     {
-      labelText: "Email Address",
+      labelText: "Dirección de correo electrónico",
       labelId: "email",
       type: "email",
       value: email,
       required: true,
     },
     {
-      labelText: "Password",
+      labelText: "Crea tu Contraseña",
       labelId: "password",
       type: "password",
       value: password,
       required: true,
     },
     {
-      labelText: "Confirm Password",
+      labelText: "Confirma tu contraseña",
       labelId: "re_password",
       type: "password",
       value: re_password,
@@ -57,7 +57,7 @@ export default function RegisterForm() {
     <Form
       config={config}
       isLoading={isLoading}
-      btnText="Sign up"
+      btnText="Registrarme"
       onChange={onChange}
       onSubmit={onSubmit}
     />
