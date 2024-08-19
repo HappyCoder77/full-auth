@@ -2,8 +2,8 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Full Auth | Home",
-  description: "Full Auth Home Page",
+  title: "Mis Barajitas | Home",
+  description: "Mis barajitas Home Page",
 };
 
 export default function Page() {
@@ -13,25 +13,25 @@ export default function Page() {
         <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-40">
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              Full Auth Tutorial Application
+              Mis Barajitas
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600">
-              Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-              lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-              fugiat aliqua.
+              ¡El primer portal de stickers digitales coleccionables de Latinoamérica!
+              ¡Completa tu coleccion favorita y gana fabulosos premios!
+              ¡Descubre maravillosos premios sorpresa escondios en tus sobres!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
                 href="/auth/login"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Log in to your account
+                Entrar
               </Link>
               <Link
                 href="/auth/register"
                 className="text-sm font-semibold leading-6 text-gray-900"
               >
-                Or create an account <span aria-hidden="true">&rarr;</span>
+                Registro <span aria-hidden="true">&rarr;</span>
               </Link>
             </div>
           </div>
