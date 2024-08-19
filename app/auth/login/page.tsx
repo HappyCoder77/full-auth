@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { LoginForm } from "@/components/forms";
 import { Metadata } from "next";
-import { SocialButtons } from "@/components/common";
 
 export const metadata: Metadata = {
-  title: "Full Auth | Login",
-  description: "Full Auth Login Page",
+  title: "Mis Barajitas | Entrar",
+  description: "Página de inicio de sesión de Mis Barajitas",
 };
 export default function Page() {
   // return method
@@ -20,7 +19,7 @@ export default function Page() {
           className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Sign in to your account
+          Ingresa a tu cuenta
         </h2>
       </div>
 
@@ -28,16 +27,16 @@ export default function Page() {
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         {/* form */}
         <LoginForm />
-        <SocialButtons /> 
+        {/* <SocialButtons /> */}
 
         {/* register link */}
         <p className="mt-10 text-center text-sm text-gray-500">
-          Don&apos;t have an account?{" "}
+          ¿No tienes una cuenta?{" "}
           <Link
             href="/auth/register"
             className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
           >
-            Register here
+            Regístrate
           </Link>
         </p>
       </div>
