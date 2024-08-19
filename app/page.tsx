@@ -18,7 +18,7 @@ export default function Page() {
             <p className="mt-6 text-lg leading-8 text-gray-600">
               ¡El primer portal de stickers digitales coleccionables de Latinoamérica!
               ¡Completa tu coleccion favorita y gana fabulosos premios!
-              ¡Descubre maravillosos premios sorpresa escondios en tus sobres!
+              ¡Descubre maravillosos premios sorpresa escondidos en tus sobres!
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
