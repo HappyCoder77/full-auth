@@ -8,8 +8,8 @@ import { Setup } from "@/components/utils";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Full Auth",
-  description: "Full Auth app",
+  title: "Mis Barajitas",
+  description: "Mis barajitas, aplicación web de stickers digitales coleccionables",
 };
 
 export default function RootLayout({
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={inter.className}>
         <Provider>
           <Setup />
