@@ -2,8 +2,8 @@ import { PasswordResetForm } from "@/components/forms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Full Auth | Password Reset",
-  description: "Full auth password reset page",
+  title: "Mis Barajitas | Cambio de contraseña",
+  description: "Página de ambio de contraseña Mis Barajitas",
 };
 export default function Page() {
   return (
@@ -17,7 +17,7 @@ export default function Page() {
           className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Reset you password
+          Cambia tu contraseña
         </h2>
       </div>
 
