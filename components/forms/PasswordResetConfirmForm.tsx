@@ -14,14 +14,14 @@ export default function PasswordResetConfirmForm({ uid, token }: Props) {
 
   const config = [
     {
-      labelText: "Set new password",
+      labelText: "Escribe tu nueva contraseña",
       labelId: "new_password",
       type: "password",
       value: new_password,
       required: true,
     },
     {
-      labelText: "Confirm new password",
+      labelText: "Confirma tu nueva contraseña",
       labelId: "re_new_password",
       type: "password",
       value: re_new_password,
@@ -32,7 +32,7 @@ export default function PasswordResetConfirmForm({ uid, token }: Props) {
     <Form
       config={config}
       isLoading={isLoading}
-      btnText="Set new pasword"
+      btnText="Establecer nueva contraseña"
       onChange={onChange}
       onSubmit={onSubmit}
     />

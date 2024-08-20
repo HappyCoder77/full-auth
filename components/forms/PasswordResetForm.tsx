@@ -7,7 +7,7 @@ export default function PasswordResetForm() {
   const { email, isLoading, onChange, onSubmit } = useResetPassword();
   const config = [
     {
-      labelText: "Email address",
+      labelText: "Dirección de correo electrónico",
       labelId: "email",
       type: "email",
       value: email,
@@ -18,7 +18,7 @@ export default function PasswordResetForm() {
     <Form
       config={config}
       isLoading={isLoading}
-      btnText="Send link"
+      btnText="Enviar link de activación"
       onChange={onChange}
       onSubmit={onSubmit}
     />
