@@ -2,8 +2,8 @@ import { PasswordResetConfirmForm } from "@/components/forms";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Full Auth | Password Reset Confirm",
-  description: "Full auth password reset confirm page",
+  title: "Mis barajitas | Confirmar cambio de contraseña",
+  description: "página de confirmcion de cambio de contraseña Mis Barajitas",
 };
 
 interface Props {
@@ -24,7 +24,7 @@ export default function Page({ params: { uid, token } }: Props) {
           className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Reset you password
+          Cambia tu contraseña
         </h2>
       </div>
 
