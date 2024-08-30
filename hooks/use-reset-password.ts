@@ -1,5 +1,3 @@
-"use client";
-
 import { useResetPasswordMutation } from "@/redux/features/authApiSlice";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
