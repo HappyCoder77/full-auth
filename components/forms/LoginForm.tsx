@@ -24,7 +24,7 @@ import { Form } from "@/components/forms";
  * @returns {JSX.Element} El formulario de inicio de sesión.
  */
 
-export default function LoginForm() {
+export default function LoginForm(): JSX.Element {
   const { register, isLoading, onFormSubmit, errors } = useLogin();
 
   const config = [                        

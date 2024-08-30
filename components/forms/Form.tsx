@@ -1,7 +1,14 @@
-import { BaseSyntheticEvent } from "react";
+import { BaseSyntheticEvent, ReactNode } from "react";
 import { Input } from "@/components/forms";
 import { Spinner } from "@/components/common";
-import { FieldErrors, UseFormRegister, ValidationRule } from "react-hook-form";
+import {
+  FieldErrors,
+  FieldValues,
+  Path,
+  UseFormRegister,
+  Validate,
+  ValidationRule,
+} from "react-hook-form";
 
 /**
  * Form Component
@@ -20,12 +27,7 @@ import { FieldErrors, UseFormRegister, ValidationRule } from "react-hook-form";
    pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, message: "Invalid email address" }
  */
 
-interface FormValues {
-  email: string;
-  password: string;
-}
-
-interface Config {
+interface Config<T> {
   labelText: string;
   labelId: string;
   type: string;
@@ -38,25 +40,26 @@ interface Config {
     message: string;
   };
   pattern?: ValidationRule<RegExp>;
+  validate?: Validate<string, T> | Record<string, Validate<string, T>> | undefined
 }
 
-interface Props {
-  config: Config[];
-  register: UseFormRegister<FormValues>;
+interface Props<T extends FieldValues> {
+  config: Config<T>[];
+  register: UseFormRegister<T>;
   isLoading: boolean;
   onFormSubmit: (e?: BaseSyntheticEvent) => Promise<void>;
-  errors: FieldErrors<FormValues>;
+  errors: FieldErrors<T>;
   btnText: string;
 }
 
-export default function Form({
+export default function Form<T extends FieldValues>({
   config,
   register,
   isLoading,
   onFormSubmit,
   errors,
   btnText,
-}: Props) {
+}: Props<T>) {
   const errorClassname: string = "text-red-600 text-xs";
 
   return (
@@ -67,15 +70,16 @@ export default function Form({
             labelId={input.labelId}
             type={input.type}
             link={input.link}
-            register={register(input.labelId as keyof FormValues, {
+            register={register(input.labelId as Path<T>, {
               required: input.required ?? false,
-              pattern: input.pattern ?? undefined
+              pattern: input.pattern ?? undefined,
+              validate: input.validate ?? undefined,
             })}
           >
             {input.labelText}
           </Input>
           <span className={errorClassname}>
-            {errors[input.labelId as keyof FormValues]?.message}
+            {errors[input.labelId as keyof T]?.message as ReactNode}
           </span>
         </div>
       ))}

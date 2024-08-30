@@ -1,30 +1,37 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { useRegisterMutation } from "@/redux/features/authApiSlice";
+import { useRegisterMutation as useUserRegisterMutation } from "@/redux/features/authApiSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
+
+interface RegisterFormData {
+  first_name: string;
+  last_name: string;
+  email: string;
+  password: string;
+  re_password: string;
+}
 
 export default function useRegister() {
   const router = useRouter();
-  const [register, { isLoading }] = useRegisterMutation();
+  const [userRegister, { isLoading }] = useUserRegisterMutation();
 
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    re_password: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm<RegisterFormData>({
+    defaultValues: {
+      first_name: "",
+      last_name: "",
+      email: "",
+      password: "",
+      re_password: "",
+    },
   });
 
-  const { first_name, last_name, email, password, re_password } = formData;
-
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    register({ first_name, last_name, email, password, re_password })
+  const submit = (data: RegisterFormData) => {
+    userRegister(data)
       .unwrap()
       .then(() => {
         toast.success(
@@ -40,14 +47,13 @@ export default function useRegister() {
       });
   };
 
+  const onSubmit = handleSubmit(submit);
+
   return {
-    first_name,
-    last_name,
-    email,
-    password,
-    re_password,
+    register,
     isLoading,
-    onChange,
     onSubmit,
+    errors,
+    watch,
   };
 }
