@@ -4,8 +4,6 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
 interface RegisterFormData {
-  first_name: string;
-  last_name: string;
   email: string;
   password: string;
   re_password: string;
@@ -22,8 +20,6 @@ export default function useRegister() {
     watch,
   } = useForm<RegisterFormData>({
     defaultValues: {
-      first_name: "",
-      last_name: "",
       email: "",
       password: "",
       re_password: "",

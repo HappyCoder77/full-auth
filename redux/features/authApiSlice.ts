@@ -1,8 +1,6 @@
 import { apiSlice } from "../services/apiSlice";
 
 interface User {
-  first_name: string;
-  last_name: string;
   email: string;
 }
 
@@ -45,12 +43,10 @@ const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     register: builder.mutation({
-      query: ({ first_name, last_name, email, password, re_password }) => ({
+      query: ({ email, password, re_password }) => ({
         url: "/users/",
         method: "POST",
         body: {
-          first_name,
-          last_name,
           email,
           password,
           re_password,
@@ -77,7 +73,7 @@ const authApiSlice = apiSlice.injectEndpoints({
       }),
     }),
     resetPassword: builder.mutation({
-      query: (email) => ({
+      query: ({ email }) => ({
         url: "/users/reset_password/",
         method: "POST",
         body: { email },

@@ -7,7 +7,7 @@ interface RequestPasswordFormData {
 }
 
 export default function useResetPassword() {
-  const [resetPasword, { isLoading }] = useResetPasswordMutation();
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
   const {
     register,
@@ -20,14 +20,15 @@ export default function useResetPassword() {
   });
 
   const submit = (data: RequestPasswordFormData) => {
-    resetPasword(data)
+    resetPassword(data)
       .unwrap()
       .then(() => {
         toast.success(
           "Te hemos enviado un link con instrucciones para el cambio de contraseña al correo que ingresaste"
         );
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log("error: ", error)
         toast.error("Ha ocurrido un error con tu solicitud");
       });
   };

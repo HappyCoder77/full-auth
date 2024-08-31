@@ -6,14 +6,7 @@ import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 export default function Page() {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
   const config = [
-    {
-      label: "First Name",
-      value: user?.first_name,
-    },
-    {
-      label: "Last Name",
-      value: user?.last_name,
-    },
+ 
     {
       label: "Email Address",
       value: user?.email,

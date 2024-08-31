@@ -8,24 +8,6 @@ export default function RegisterForm() {
 
   const config = [
     {
-      labelText: "Nombre",
-      labelId: "first_name",
-      type: "text",
-      required: {
-        value: true,
-        message: "El nombre es requerido",
-      },
-    },
-    {
-      labelText: "Apellido",
-      labelId: "last_name",
-      type: "text",
-      required: {
-        value: true,
-        message: "El apellido es requerido",
-      },
-    },
-    {
       labelText: "Dirección de correo electrónico",
       labelId: "email",
       type: "email",
