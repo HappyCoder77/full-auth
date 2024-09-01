@@ -8,7 +8,6 @@ interface Props {
   token: string;
 }
 export default function PasswordResetConfirmForm({ uid, token }: Props) {
-  // const { uid, token } = params;
   const { register, isLoading, onSubmit, watch, errors } =
     useResetPasswordConfirm(uid, token);
 
@@ -32,9 +31,7 @@ export default function PasswordResetConfirmForm({ uid, token }: Props) {
       },
       validate: {
         passwordsNotEqual: (fieldValue: string) => {
-          return (
-            fieldValue === watch("password") || "Las contraseñas no coinciden"
-          );
+          return fieldValue === watch("new_password") || "Las contraseñas no coinciden";
         },
       },
     },
