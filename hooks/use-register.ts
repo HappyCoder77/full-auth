@@ -1,7 +1,10 @@
+"use client";
+
 import { useRegisterMutation as useUserRegisterMutation } from "@/redux/features/authApiSlice";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 
 interface RegisterFormData {
   email: string;
@@ -10,6 +13,13 @@ interface RegisterFormData {
 }
 
 export default function useRegister() {
+  const [passwordValidationErrors, setPasswordValidationErrors] = useState<
+    string[]
+  >([]);
+  const [emailValidationErrors, setEmailValidationErrors] = useState<string[]>(
+    []
+  );
+
   const router = useRouter();
   const [userRegister, { isLoading }] = useUserRegisterMutation();
 
@@ -26,6 +36,18 @@ export default function useRegister() {
     },
   });
 
+  useEffect(() => {
+    const subscription = watch((value, { name }) => {
+      if (name === "email" && emailValidationErrors.length > 0) {
+        setEmailValidationErrors([]);
+      }
+      if (name === "password" && passwordValidationErrors.length > 0) {
+        setPasswordValidationErrors([]);
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, emailValidationErrors, passwordValidationErrors]);
+
   const submit = (data: RegisterFormData) => {
     userRegister(data)
       .unwrap()
@@ -38,8 +60,17 @@ export default function useRegister() {
         );
         router.push("/auth/login");
       })
-      .catch(() => {
-        toast.error("Ha ocurrido un error durante el proceso de registro");
+      .catch((error) => {
+        if (error.data && error.data.password) {
+          setPasswordValidationErrors(error.data.password);
+        } else if (error.data && error.data.email) {
+          console.log(error)
+          setEmailValidationErrors(error.data.email);
+        } else {
+          toast.error(
+            "Ha ocurrido un error interno durante el proceso de registro"
+          );
+        }
       });
   };
 
@@ -50,6 +81,8 @@ export default function useRegister() {
     isLoading,
     onSubmit,
     errors,
+    passwordValidationErrors,
+    emailValidationErrors,
     watch,
   };
 }

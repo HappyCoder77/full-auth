@@ -40,7 +40,10 @@ interface Config<T> {
     message: string;
   };
   pattern?: ValidationRule<RegExp>;
-  validate?: Validate<string, T> | Record<string, Validate<string, T>> | undefined
+  validate?:
+    | Validate<string, T>
+    | Record<string, Validate<string, T>>
+    | undefined;
 }
 
 interface Props<T extends FieldValues> {
@@ -49,6 +52,9 @@ interface Props<T extends FieldValues> {
   isLoading: boolean;
   onFormSubmit: (e?: BaseSyntheticEvent) => Promise<void>;
   errors: FieldErrors<T>;
+  passwordValidationErrors?: string[];
+  emailValidationErrors?: string[];
+
   btnText: string;
 }
 
@@ -58,12 +64,42 @@ export default function Form<T extends FieldValues>({
   isLoading,
   onFormSubmit,
   errors,
+  passwordValidationErrors,
+  emailValidationErrors,
   btnText,
 }: Props<T>) {
   const errorClassname: string = "text-red-600 text-xs";
 
   return (
     <form className="space-y-6" onSubmit={onFormSubmit}>
+      {passwordValidationErrors && passwordValidationErrors.length > 0 && (
+        <div>
+          <h4 className={errorClassname}>
+            Errores de validación de contraseña:
+          </h4>
+          <ul>
+            {passwordValidationErrors?.map((error, index) => (
+              <li key={index} className={errorClassname}>
+                *{error}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {emailValidationErrors && emailValidationErrors.length > 0 && (
+        <div>
+          <h4 className={errorClassname}>
+            Errores de validación de email:
+          </h4>
+          <ul>
+            {emailValidationErrors?.map((error, index) => (
+              <li key={index} className={errorClassname}>
+                *{error}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
       {config.map((input) => (
         <div key={input.labelId}>
           <Input

@@ -4,7 +4,7 @@ import { useRegister } from "@/hooks";
 import { Form } from "@/components/forms";
 
 export default function RegisterForm() {
-  const { register, isLoading, onSubmit, errors, watch } = useRegister();
+  const { register, isLoading, onSubmit, errors, passwordValidationErrors, emailValidationErrors, watch } = useRegister();
 
   const config = [
     {
@@ -53,6 +53,8 @@ export default function RegisterForm() {
       btnText="Registrarme"
       onFormSubmit={onSubmit}
       errors={errors}
+      passwordValidationErrors={passwordValidationErrors}
+      emailValidationErrors={emailValidationErrors}
     />
   );
 }
