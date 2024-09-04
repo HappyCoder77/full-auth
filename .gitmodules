@@ -1,0 +1,6 @@
+[submodule "__tests__"]
+	path = __tests__
+	url = https://github.com/HappyCoder77/misbarajitas-tests.git
+[submodule "misbarajitas-tests"]
+	path = misbarajitas-tests
+	url = https://github.com/HappyCoder77/misbarajitas-tests.git
