@@ -4,7 +4,15 @@ import { useRegister } from "@/hooks";
 import { Form } from "@/components/forms";
 
 export default function RegisterForm() {
-  const { register, isLoading, onSubmit, errors, passwordValidationErrors, emailValidationErrors, watch } = useRegister();
+  const {
+    register,
+    isLoading,
+    onSubmit,
+    errors,
+    passwordValidationErrors,
+    emailValidationErrors,
+    watch,
+  } = useRegister();
 
   const config = [
     {
@@ -39,9 +47,11 @@ export default function RegisterForm() {
       },
       validate: {
         passwordsNotEqual: (fieldValue: string) => {
-          return fieldValue === watch("password") || "Las contraseñas no coinciden"
-        }
-      }
+          return (
+            fieldValue === watch("password") || "Las contraseñas no coinciden"
+          );
+        },
+      },
     },
   ];
 

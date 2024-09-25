@@ -64,7 +64,7 @@ export default function useRegister() {
         if (error.data && error.data.password) {
           setPasswordValidationErrors(error.data.password);
         } else if (error.data && error.data.email) {
-          console.log(error)
+          console.log(error);
           setEmailValidationErrors(error.data.email);
         } else {
           toast.error(
