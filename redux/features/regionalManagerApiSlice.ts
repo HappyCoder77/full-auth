@@ -6,7 +6,7 @@ interface RegionalManager {
   middle_name: string;
   first_last_name: string;
   second_last_name: string;
-  sex: string;
+  gender: string;
   birthdate: string;
   email: string;
   created_by: number;
@@ -24,19 +24,19 @@ const RegionalManagerApiSlice = apiSlice.injectEndpoints({
         middle_name,
         first_last_name,
         second_last_name,
-        sex,
+        gender,
         birthdate,
         email,
         created_by,
       }) => ({
-        url: "/register",
+        url: "/register/regional-manager-profile/",
         method: "POST",
         body: {
           first_name,
           middle_name,
           first_last_name,
           second_last_name,
-          sex,
+          gender,
           birthdate,
           email,
           created_by,

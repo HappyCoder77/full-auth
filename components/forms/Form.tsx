@@ -44,6 +44,7 @@ interface Config<T> {
     | Validate<string, T>
     | Record<string, Validate<string, T>>
     | undefined;
+  options?: { value: string; label: string }[];
 }
 
 interface Props<T extends FieldValues> {
@@ -88,9 +89,7 @@ export default function Form<T extends FieldValues>({
       )}
       {emailValidationErrors && emailValidationErrors.length > 0 && (
         <div>
-          <h4 className={errorClassname}>
-            Errores de validación de email:
-          </h4>
+          <h4 className={errorClassname}>Errores de validación de email:</h4>
           <ul>
             {emailValidationErrors?.map((error, index) => (
               <li key={index} className={errorClassname}>
@@ -111,6 +110,7 @@ export default function Form<T extends FieldValues>({
               pattern: input.pattern ?? undefined,
               validate: input.validate ?? undefined,
             })}
+            options={input.options}
           >
             {input.labelText}
           </Input>
