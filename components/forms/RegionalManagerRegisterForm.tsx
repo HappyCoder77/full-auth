@@ -30,7 +30,7 @@ export default function RegisterForm() {
     },
     {
       labelText: "Primer Apellido",
-      labelId: "first_last_name",
+      labelId: "last_name",
       type: "text",
       required: {
         value: true,

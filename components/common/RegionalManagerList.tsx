@@ -7,7 +7,7 @@ interface RegionalManager {
   user: number;
   first_name: string;
   middle_name: string;
-  first_last_name: string;
+  last_name: string;
   second_last_name: string;
   gender: string;
   birthdate: string;
@@ -60,7 +60,7 @@ export default function RegionalManagerTable() {
               className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
             >
               <td className="py-3 px-4">
-                {`${manager.first_name} ${manager.first_last_name} `}
+                {`${manager.first_name} ${manager.last_name} `}
               </td>
               <td className="py-3 px-4">{manager.email}</td>
             </tr>

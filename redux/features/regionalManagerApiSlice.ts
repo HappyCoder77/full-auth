@@ -4,7 +4,7 @@ interface RegionalManager {
   user: number;
   first_name: string;
   middle_name: string;
-  first_last_name: string;
+  last_name: string;
   second_last_name: string;
   gender: string;
   birthdate: string;
@@ -22,7 +22,7 @@ const RegionalManagerApiSlice = apiSlice.injectEndpoints({
       query: ({
         first_name,
         middle_name,
-        first_last_name,
+        last_name,
         second_last_name,
         gender,
         birthdate,
@@ -34,7 +34,7 @@ const RegionalManagerApiSlice = apiSlice.injectEndpoints({
         body: {
           first_name,
           middle_name,
-          first_last_name,
+          last_name,
           second_last_name,
           gender,
           birthdate,
