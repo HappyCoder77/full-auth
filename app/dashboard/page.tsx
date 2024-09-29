@@ -32,7 +32,7 @@ export default function Page() {
       </header>
       <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
         <List config={config} />
-        <RegionalManagerTable />
+        {user && user.is_superuser && <RegionalManagerTable />}
       </main>
     </>
   );

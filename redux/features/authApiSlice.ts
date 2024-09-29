@@ -1,7 +1,9 @@
 import { apiSlice } from "../services/apiSlice";
+import { setUser } from "./authSlice";
 
 interface User {
   email: string;
+  is_superuser: boolean;
 }
 
 interface SocialAuthArgs {
@@ -19,6 +21,14 @@ const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     retrieveUser: builder.query<User, void>({
       query: () => "/users/me/",
+      async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setUser(data));
+        } catch (error) {
+          console.error("Failed to retrieve user", error);
+        }
+      },
     }),
     socialAuthenticate: builder.mutation<CreateUserResponse, SocialAuthArgs>({
       query: ({ provider, state, code }) => ({

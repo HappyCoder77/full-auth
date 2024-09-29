@@ -9,7 +9,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mis Barajitas",
-  description: "Mis barajitas, aplicación web de stickers digitales coleccionables",
+  description:
+    "Mis barajitas, aplicación web de stickers digitales coleccionables",
 };
 
 export default function RootLayout({
@@ -23,7 +24,9 @@ export default function RootLayout({
         <Provider>
           <Setup />
           <Navbar />
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-8">{children}</div>
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 mt-8">
+            {children}
+          </div>
           <Footer />
         </Provider>
       </body>
