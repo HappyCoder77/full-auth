@@ -1,8 +1,7 @@
 import { useAppDispatch } from "@/redux/hooks";
 import { useLoginMutation } from "@/redux/features/authApiSlice";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { setAuth } from "@/redux/features/authSlice";
+import { setAuth, clearAuth, setUser } from "@/redux/features/authSlice";
 import { useForm } from "react-hook-form";
 
 /**
@@ -25,7 +24,6 @@ interface FormValues {
   password: string;
 }
 export default function useLogin() {
-  const router = useRouter();
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
 
@@ -41,12 +39,16 @@ export default function useLogin() {
   });
 
   const onSubmit = (data: FormValues) => {
+    dispatch(clearAuth());
     login(data)
       .unwrap()
-      .then(() => {
+      .then((user) => {
         dispatch(setAuth());
-        toast.success("Sesion iniciada con éxito");
-        router.push("/dashboard");
+        dispatch(setUser(user));
+        toast.success("Sesion iniciada con éxito", {
+          autoClose: 3000,
+        });
+        window.location.href = "/dashboard";
       })
       .catch(() => {
         toast.error("Ha ocurrido un error al iniciar sesión");

@@ -56,7 +56,7 @@ export default function useRegisterRegionalManager() {
       .unwrap()
       .then(() => {
         toast.success("Gerente regional creado exitosamente", {
-          autoClose: 7000,
+          autoClose: 3000,
         });
         router.push("/dashboard");
       })
