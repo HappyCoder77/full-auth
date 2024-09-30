@@ -4,6 +4,7 @@ import { setUser } from "./authSlice";
 interface User {
   email: string;
   is_superuser: boolean;
+  is_regionalmanager: boolean;
 }
 
 interface SocialAuthArgs {
