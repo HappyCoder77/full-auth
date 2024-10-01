@@ -3,6 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface User {
   email: string;
   is_superuser: boolean;
+  is_regionalmanager: boolean;
 }
 
 interface authState {
@@ -34,13 +35,9 @@ const authSlice = createSlice({
     setUser: (state, action: PayloadAction<User | null>) => {
       state.user = action.payload;
     },
-    clearAuth: (state) => {
-      state.isAuthenticated = false;
-      state.user = null;
-    },
   },
 });
 
-export const { setAuth, clearAuth, logout, finishInitialLoad, setUser } =
+export const { setAuth, logout, finishInitialLoad, setUser } =
   authSlice.actions;
 export default authSlice.reducer;

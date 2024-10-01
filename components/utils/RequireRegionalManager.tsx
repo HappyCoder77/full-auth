@@ -33,7 +33,7 @@ export default function RequireSuperuser({ children }: Props) {
     );
   }
 
-  if (!user?.is_superuser) {
+  if (!user?.is_regionalmanager) {
     redirect("/unauthorized");
   }
 

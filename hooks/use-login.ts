@@ -1,8 +1,9 @@
 import { useAppDispatch } from "@/redux/hooks";
 import { useLoginMutation } from "@/redux/features/authApiSlice";
 import { toast } from "react-toastify";
-import { setAuth, clearAuth, setUser } from "@/redux/features/authSlice";
+import { setAuth, setUser } from "@/redux/features/authSlice";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 /**
  * Hook personalizado para manejar el inicio de sesión de usuarios.
@@ -26,6 +27,7 @@ interface FormValues {
 export default function useLogin() {
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
+  const router = useRouter();
 
   const {
     register,
@@ -39,7 +41,6 @@ export default function useLogin() {
   });
 
   const onSubmit = (data: FormValues) => {
-    dispatch(clearAuth());
     login(data)
       .unwrap()
       .then((user) => {

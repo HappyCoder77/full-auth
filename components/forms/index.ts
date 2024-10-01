@@ -5,3 +5,4 @@ export { default as RegisterForm } from "./RegisterForm";
 export { default as PasswordResetForm } from "./PasswordResetForm";
 export { default as PasswordResetConfirmForm } from "./PasswordResetConfirmForm";
 export { default as RegionalManagerRegisterForm } from "./RegionalManagerRegisterForm";
+export { default as LocalManagerRegisterForm } from "./LocalManagerRegisterForm";
