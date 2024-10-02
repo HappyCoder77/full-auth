@@ -5,6 +5,8 @@ interface User {
   email: string;
   is_superuser: boolean;
   is_regionalmanager: boolean;
+  is_localmanager: boolean;
+  is_sponsor: boolean;
 }
 
 interface SocialAuthArgs {

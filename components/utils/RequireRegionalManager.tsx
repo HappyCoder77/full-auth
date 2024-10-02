@@ -10,7 +10,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function RequireSuperuser({ children }: Props) {
+export default function RequireRegionalManager({ children }: Props) {
   const { isLoading, user } = useAppSelector((state) => state.auth);
   const [isChecking, setIsChecking] = useState(true);
   const { refetch } = useRetrieveUserQuery();

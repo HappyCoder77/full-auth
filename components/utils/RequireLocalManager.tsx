@@ -10,7 +10,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function RequireSuperUser({ children }: Props) {
+export default function RequireLocalManager({ children }: Props) {
   const { isLoading, user } = useAppSelector((state) => state.auth);
   const [isChecking, setIsChecking] = useState(true);
   const { refetch } = useRetrieveUserQuery();
@@ -33,7 +33,7 @@ export default function RequireSuperUser({ children }: Props) {
     );
   }
 
-  if (!user?.is_superuser) {
+  if (!user?.is_localmanager) {
     redirect("/unauthorized");
   }
 

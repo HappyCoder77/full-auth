@@ -1,9 +1,9 @@
 import { Metadata } from "next";
-import { RegionalManagerRegisterForm } from "@/components/forms";
+import { SponsorRegisterForm } from "@/components/forms";
 
 export const metadata: Metadata = {
-  title: "Mis Barajitas | Registro de Gerente Regional",
-  description: "Mis Barajitas Regional Manager Register Page",
+  title: "Mis Barajitas | Registro de Sponsor",
+  description: "Mis Barajitas Sponsor Register Page",
 };
 
 export default function Page() {
@@ -19,13 +19,13 @@ export default function Page() {
           className="mx-auto h-10 w-auto"
         />
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-          Registro de Gerente Regional
+          Registro de Sponsor
         </h2>
       </div>
       {/* form container */}
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         {/* form */}
-        <RegionalManagerRegisterForm />
+        <SponsorRegisterForm />
       </div>
     </div>
   );

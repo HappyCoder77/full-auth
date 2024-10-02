@@ -14,7 +14,7 @@ interface RegionalManager {
   email: string;
   created_by: number;
 }
-export default function RegionalManagerTable() {
+export default function RegionalManagerList() {
   const {
     data: regionalManagers,
     isLoading,
