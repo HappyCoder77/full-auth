@@ -1,9 +1,9 @@
 "use client";
 
-import { useLocalManagerListQuery } from "@/redux/features/localManagerApiSlice";
+import { useDealerListQuery } from "@/redux/features/dealerApiSlice";
 import { Spinner } from "@/components/common";
 
-interface LocalManager {
+interface Dealer {
   user: number;
   first_name: string;
   middle_name: string;
@@ -15,12 +15,7 @@ interface LocalManager {
   created_by: number;
 }
 export default function LocalManagerList() {
-  const {
-    data: localManagers,
-    isLoading,
-    isError,
-    error,
-  } = useLocalManagerListQuery();
+  const { data: Dealers, isLoading, isError, error } = useDealerListQuery();
 
   if (isLoading) {
     return (
@@ -45,7 +40,7 @@ export default function LocalManagerList() {
     <div className="overflow-x-auto">
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <h3 className="text-2xl font-bold tracking-tight text-gray-900">
-          Gerentes Locales
+          Dealers
         </h3>
       </div>
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
@@ -56,15 +51,15 @@ export default function LocalManagerList() {
           </tr>
         </thead>
         <tbody>
-          {localManagers?.map((manager: LocalManager, index: number) => (
+          {Dealers?.map((dealer: Dealer, index: number) => (
             <tr
-              key={manager.email}
+              key={dealer.email}
               className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}
             >
               <td className="py-3 px-4">
-                {`${manager.first_name} ${manager.last_name} `}
+                {`${dealer.first_name} ${dealer.last_name} `}
               </td>
-              <td className="py-3 px-4">{manager.email}</td>
+              <td className="py-3 px-4">{dealer.email}</td>
             </tr>
           ))}
         </tbody>

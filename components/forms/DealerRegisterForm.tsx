@@ -1,9 +1,9 @@
 "use client";
 
-import { useRegisterRegionalManager } from "@/hooks";
+import { useRegisterDealer } from "@/hooks";
 import { Form } from "@/components/forms";
 
-export default function RegionalManagerRegisterForm() {
+export default function DealerRegisterForm() {
   const {
     register,
     isLoading,
@@ -11,7 +11,7 @@ export default function RegionalManagerRegisterForm() {
     errors,
     emailValidationErrors,
     watch,
-  } = useRegisterRegionalManager();
+  } = useRegisterDealer();
 
   const config = [
     {

@@ -3,7 +3,7 @@
 import { useRegisterLocalManager } from "@/hooks";
 import { Form } from "@/components/forms";
 
-export default function RegisterForm() {
+export default function LocalManagerRegisterForm() {
   const {
     register,
     isLoading,

@@ -3,7 +3,7 @@
 import { useRegisterSponsor } from "@/hooks";
 import { Form } from "@/components/forms";
 
-export default function RegisterSponsorForm() {
+export default function SponsorRegisterForm() {
   const {
     register,
     isLoading,

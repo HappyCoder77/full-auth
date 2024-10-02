@@ -7,3 +7,4 @@ export { default as useSocialAuth } from "./use-social-auth";
 export { default as useRegisterRegionalManager } from "./use-register-regional-manager";
 export { default as useRegisterLocalManager } from "./use-register-local-manager";
 export { default as useRegisterSponsor } from "./use-register-sponsor";
+export { default as useRegisterDealer } from "./use-register-dealer";

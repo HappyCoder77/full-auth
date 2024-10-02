@@ -6,6 +6,7 @@ interface User {
   is_regionalmanager: boolean;
   is_localmanager: boolean;
   is_sponsor: boolean;
+  is_dealer: boolean;
 }
 
 interface authState {

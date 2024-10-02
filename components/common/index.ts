@@ -8,3 +8,4 @@ export { default as List } from "./List";
 export { default as LocalManagerList } from "./LocalManagerList";
 export { default as RegionalManagerList } from "./RegionalManagerList";
 export { default as SponsorList } from "./SponsorList";
+export { default as DealerList } from "./DealerList";
