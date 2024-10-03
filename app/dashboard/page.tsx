@@ -8,10 +8,13 @@ import {
   SponsorList,
   DealerList,
 } from "@/components/common";
+
+import { CollectorRegisterForm } from "@/components/forms";
 import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 export default function Page() {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
+
   const config = [
     {
       label: "Email Address",
@@ -37,6 +40,7 @@ export default function Page() {
             {user && user.is_localmanager && "Gerente Local"}
             {user && user.is_sponsor && "Sponsor"}
             {user && user.is_dealer && "Dealer"}
+            {user?.is_collector && "Coleccionista"}
           </h1>
         </div>
       </header>
@@ -45,9 +49,25 @@ export default function Page() {
         {user && user.is_superuser && <RegionalManagerList />}
         {user && user.is_superuser && <LocalManagerList />}
         {user && user.is_superuser && <SponsorList />}
+        {user && user.is_superuser && <DealerList />}
         {user && user.is_regionalmanager && <LocalManagerList />}
         {user && user.is_localmanager && <SponsorList />}
         {user && user.is_sponsor && <DealerList />}
+        {user?.is_collector && !user.has_profile && (
+          <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            {/* form image */}
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+              <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+                Para continuar debes completar tu perfil
+              </h2>
+            </div>
+            {/* form container */}
+            <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+              {/* form */}
+              <CollectorRegisterForm />
+            </div>
+          </div>
+        )}
       </main>
     </>
   );

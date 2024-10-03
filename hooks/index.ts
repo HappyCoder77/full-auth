@@ -8,3 +8,4 @@ export { default as useRegisterRegionalManager } from "./use-register-regional-m
 export { default as useRegisterLocalManager } from "./use-register-local-manager";
 export { default as useRegisterSponsor } from "./use-register-sponsor";
 export { default as useRegisterDealer } from "./use-register-dealer";
+export { default as useRegisterCollector } from "./use-register-collector";

@@ -8,3 +8,4 @@ export { default as RegionalManagerRegisterForm } from "./RegionalManagerRegiste
 export { default as LocalManagerRegisterForm } from "./LocalManagerRegisterForm";
 export { default as SponsorRegisterForm } from "./SponsorRegisterForm";
 export { default as DealerRegisterForm } from "./DealerRegisterForm";
+export { default as CollectorRegisterForm } from "./CollectorRegisterForm";
