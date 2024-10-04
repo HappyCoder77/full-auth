@@ -28,7 +28,7 @@ export default function SuperUserDashboard({ email }: SuperUserDashboardProps) {
       </header>
       <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
         <List config={config} />
-        <Link href="#">
+        <Link href="/regional-manager/list/">
           <header className="bg-white shadow">
             <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
               <h3 className="text-3xl font-bold tracking-tight text-blue-600">
