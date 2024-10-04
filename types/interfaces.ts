@@ -26,3 +26,17 @@ export interface Dealer {
 }
 
 export type RegisterDealerParams = Omit<Dealer, "user">;
+
+export interface RegionalManager {
+  user: number;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  second_last_name: string;
+  gender: string;
+  birthdate: string;
+  email: string;
+  created_by: number;
+}
+
+export type RegisterRegionalManagerParams = Omit<RegionalManager, "user">;

@@ -1,56 +1,37 @@
 import { apiSlice } from "../services/apiSlice";
+import {
+  RegionalManager,
+  Count,
+  RegisterRegionalManagerParams,
+} from "@/types/interfaces";
+import { EndpointBuilder } from "@reduxjs/toolkit/query";
 
-interface RegionalManager {
-  user: number;
-  first_name: string;
-  middle_name: string;
-  last_name: string;
-  second_last_name: string;
-  gender: string;
-  birthdate: string;
-  email: string;
-  created_by: number;
-}
+const REGIONALMANAGER_URL = "/register/regional-manager-profile/";
 
-interface Count {
-  total: number;
-}
+const createRegionalManagerEndpoints = (
+  builder: EndpointBuilder<any, any, any>
+) => ({
+  regionalManagerList: builder.query<RegionalManager[], void>({
+    query: () => REGIONALMANAGER_URL,
+  }),
 
-const RegionalManagerApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    regionalManagerList: builder.query<RegionalManager[], void>({
-      query: () => "/register/regional-manager-profile/",
-    }),
-
-    regionalManagerCount: builder.query<Count, void>({
-      query: () => "register/regional-manager-profile/count/",
-    }),
-    registerRegionalManager: builder.mutation({
-      query: ({
-        first_name,
-        middle_name,
-        last_name,
-        second_last_name,
-        gender,
-        birthdate,
-        email,
-        created_by,
-      }) => ({
-        url: "/register/regional-manager-profile/",
-        method: "POST",
-        body: {
-          first_name,
-          middle_name,
-          last_name,
-          second_last_name,
-          gender,
-          birthdate,
-          email,
-          created_by,
-        },
-      }),
+  regionalManagerCount: builder.query<Count, void>({
+    query: () => `${REGIONALMANAGER_URL}count/`,
+  }),
+  registerRegionalManager: builder.mutation<
+    RegionalManager,
+    RegisterRegionalManagerParams
+  >({
+    query: (regionalManagerData: RegionalManager) => ({
+      url: REGIONALMANAGER_URL,
+      method: "POST",
+      body: regionalManagerData,
     }),
   }),
+});
+
+const RegionalManagerApiSlice = apiSlice.injectEndpoints({
+  endpoints: createRegionalManagerEndpoints,
 });
 
 export const {

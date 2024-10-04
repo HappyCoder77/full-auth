@@ -5,16 +5,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
-
-interface RegisterFormData {
-  first_name: string;
-  middle_name: string;
-  first_last_name: string;
-  second_last_name: string;
-  gender: string;
-  birthdate: string;
-  email: string;
-}
+import { RegisterRegionalManagerParams } from "@/types/interfaces";
 
 export default function useRegisterRegionalManager() {
   const [emailValidationErrors, setEmailValidationErrors] = useState<string[]>(
@@ -30,11 +21,11 @@ export default function useRegisterRegionalManager() {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<RegisterFormData>({
+  } = useForm<RegisterRegionalManagerParams>({
     defaultValues: {
       first_name: "",
       middle_name: "",
-      first_last_name: "",
+      last_name: "",
       second_last_name: "",
       gender: "",
       birthdate: "",
@@ -51,7 +42,7 @@ export default function useRegisterRegionalManager() {
     return () => subscription.unsubscribe();
   }, [watch, emailValidationErrors]);
 
-  const submit = (data: RegisterFormData) => {
+  const submit = (data: RegisterRegionalManagerParams) => {
     regionalManagerRegister(data)
       .unwrap()
       .then(() => {
