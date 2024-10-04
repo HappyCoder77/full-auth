@@ -4,16 +4,7 @@ import { useRegisterCollectorMutation } from "@/redux/features/collectorApiSlice
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-
-interface RegisterFormData {
-  first_name: string;
-  middle_name: string;
-  first_last_name: string;
-  second_last_name: string;
-  gender: string;
-  birthdate: string;
-  email: string;
-}
+import { Collector } from "@/types/interfaces";
 
 export default function useRegisterDealer() {
   const router = useRouter();
@@ -24,11 +15,11 @@ export default function useRegisterDealer() {
     handleSubmit,
     formState: { errors },
     watch,
-  } = useForm<RegisterFormData>({
+  } = useForm<Collector>({
     defaultValues: {
       first_name: "",
       middle_name: "",
-      first_last_name: "",
+      last_name: "",
       second_last_name: "",
       gender: "",
       birthdate: "",
@@ -36,7 +27,7 @@ export default function useRegisterDealer() {
     },
   });
 
-  const submit = (data: RegisterFormData) => {
+  const submit = (data: Collector) => {
     registerCollector(data)
       .unwrap()
       .then(() => {

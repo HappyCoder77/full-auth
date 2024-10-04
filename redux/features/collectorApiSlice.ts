@@ -1,68 +1,31 @@
 import { apiSlice } from "../services/apiSlice";
+import { Collector } from "@/types/interfaces";
+import { EndpointBuilder } from "@reduxjs/toolkit/query";
 
-interface Collector {
-  first_name: string;
-  middle_name: string;
-  last_name: string;
-  second_last_name: string;
-  gender: string;
-  birthdate: string;
-  email: string;
-}
+const COLLECTOR_URL = "/register/collector-profile/";
+const createCollectorEndpoints = (builder: EndpointBuilder<any, any, any>) => ({
+  retrieveCollector: builder.query<Collector[], void>({
+    query: () => `${COLLECTOR_URL}/me/`,
+  }),
 
-const CollectorApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    retrieveCollector: builder.query<Collector[], void>({
-      query: () => "/register/collector-profile/me/",
-    }),
-
-    registerCollector: builder.mutation({
-      query: ({
-        first_name,
-        middle_name,
-        last_name,
-        second_last_name,
-        gender,
-        birthdate,
-        email,
-      }) => ({
-        url: "/register/collector-profile/",
-        method: "POST",
-        body: {
-          first_name,
-          middle_name,
-          last_name,
-          second_last_name,
-          gender,
-          birthdate,
-          email,
-        },
-      }),
-    }),
-    updateCollector: builder.mutation({
-      query: ({
-        first_name,
-        middle_name,
-        last_name,
-        second_last_name,
-        gender,
-        birthdate,
-        email,
-      }) => ({
-        url: "/register/collector/",
-        method: "PUT",
-        body: {
-          first_name,
-          middle_name,
-          last_name,
-          second_last_name,
-          gender,
-          birthdate,
-          email,
-        },
-      }),
+  registerCollector: builder.mutation<Collector, Collector>({
+    query: (collectorData) => ({
+      url: COLLECTOR_URL,
+      method: "POST",
+      body: collectorData,
     }),
   }),
+  updateCollector: builder.mutation<Collector, Collector>({
+    query: (collectorData) => ({
+      url: COLLECTOR_URL,
+      method: "PUT",
+      body: collectorData,
+    }),
+  }),
+});
+
+const CollectorApiSlice = apiSlice.injectEndpoints({
+  endpoints: createCollectorEndpoints,
 });
 
 export const {

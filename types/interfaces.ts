@@ -68,3 +68,14 @@ export interface Sponsor {
 }
 
 export type RegisterSponsorParams = Omit<Sponsor, "user">;
+
+// #TODO: probablemente el campo email no deba estar presente
+export interface Collector {
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  second_last_name: string;
+  gender: string;
+  birthdate: string;
+  email: string;
+}
