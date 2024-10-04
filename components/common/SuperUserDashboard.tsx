@@ -5,6 +5,7 @@ import { List, Spinner } from "@/components/common";
 import Link from "next/link";
 import { useRegionalManagerCountQuery } from "@/redux/features/regionalManagerApiSlice";
 import { useLocalManagerCountQuery } from "@/redux/features/localManagerApiSlice";
+import { useSponsorCountQuery } from "@/redux/features/sponsorApiSlice";
 import { useDealerCountQuery } from "@/redux/features/dealerApiSlice";
 
 interface Props {
@@ -29,6 +30,12 @@ export default function SuperUserDashboard({ user }: Props) {
     isLoading: isLoadingLocalManagers,
     isFetching: isFetchingLocalManagers,
   } = useLocalManagerCountQuery();
+
+  const {
+    data: totalSponsors,
+    isLoading: isLoadingSponsors,
+    isFetching: isFetchingSponsors,
+  } = useSponsorCountQuery();
 
   const {
     data: totalDealers,
@@ -79,6 +86,25 @@ export default function SuperUserDashboard({ user }: Props) {
                   </span>
                 ) : (
                   totalLocalManagers?.total ?? "No data"
+                )}
+                {")"}
+              </h3>
+            </div>
+          </header>
+        </Link>
+        <Link href="/sponsor/list/">
+          <header className="bg-white shadow">
+            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+              <h3 className="text-3xl font-bold tracking-tight text-blue-600">
+                Patrocinantes {"("}
+                {isLoadingSponsors || isFetchingSponsors ? (
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
+                    <Spinner sm />
+                  </span>
+                ) : (
+                  totalSponsors?.total ?? "No data"
                 )}
                 {")"}
               </h3>

@@ -1,3 +1,4 @@
+import { Count } from "@/types/interfaces";
 import { apiSlice } from "../services/apiSlice";
 
 interface Sponsor {
@@ -16,6 +17,10 @@ const SponsorApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     sponsorList: builder.query<Sponsor[], void>({
       query: () => "/register/sponsor-profile/",
+    }),
+
+    sponsorCount: builder.query<Count, void>({
+      query: () => "register/sponsor-profile/count/",
     }),
 
     sponsorRegister: builder.mutation({
@@ -46,5 +51,8 @@ const SponsorApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useSponsorListQuery, useSponsorRegisterMutation } =
-  SponsorApiSlice;
+export const {
+  useSponsorListQuery,
+  useSponsorCountQuery,
+  useSponsorRegisterMutation,
+} = SponsorApiSlice;
