@@ -1,54 +1,38 @@
 import { apiSlice } from "../services/apiSlice";
-import { Count } from "@/types/interfaces";
+import {
+  Count,
+  LocalManager,
+  RegisterLocalManagerParams,
+} from "@/types/interfaces";
 
-interface LocalManager {
-  user: number;
-  first_name: string;
-  middle_name: string;
-  last_name: string;
-  second_last_name: string;
-  gender: string;
-  birthdate: string;
-  email: string;
-  created_by: number;
-}
+import { EndpointBuilder } from "@reduxjs/toolkit/query";
 
-const LocalManagerApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    localManagerList: builder.query<LocalManager[], void>({
-      query: () => "/register/local-manager-profile/",
-    }),
+const LOCALMANAGER_URL = "/register/local-manager-profile/";
+const createLocalManagerEndpoints = (
+  builder: EndpointBuilder<any, any, any>
+) => ({
+  localManagerList: builder.query<LocalManager[], void>({
+    query: () => LOCALMANAGER_URL,
+  }),
 
-    localManagerCount: builder.query<Count, void>({
-      query: () => "register/local-manager-profile/count/",
-    }),
+  localManagerCount: builder.query<Count, void>({
+    query: () => `${LOCALMANAGER_URL}count/`,
+  }),
 
-    registerLocalManager: builder.mutation({
-      query: ({
-        first_name,
-        middle_name,
-        last_name,
-        second_last_name,
-        gender,
-        birthdate,
-        email,
-        created_by,
-      }) => ({
-        url: "/register/local-manager-profile/",
-        method: "POST",
-        body: {
-          first_name,
-          middle_name,
-          last_name,
-          second_last_name,
-          gender,
-          birthdate,
-          email,
-          created_by,
-        },
-      }),
+  registerLocalManager: builder.mutation<
+    LocalManager,
+    RegisterLocalManagerParams
+  >({
+    query: (localManagerData: LocalManager) => ({
+      url: "/register/local-manager-profile/",
+      method: "POST",
+      body: localManagerData,
     }),
   }),
+});
+
+const LocalManagerApiSlice = apiSlice.injectEndpoints({
+  endpoints: createLocalManagerEndpoints,
 });
 
 export const {

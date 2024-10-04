@@ -40,3 +40,17 @@ export interface RegionalManager {
 }
 
 export type RegisterRegionalManagerParams = Omit<RegionalManager, "user">;
+
+export interface LocalManager {
+  user: number;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  second_last_name: string;
+  gender: string;
+  birthdate: string;
+  email: string;
+  created_by: number;
+}
+
+export type RegisterLocalManagerParams = Omit<LocalManager, "user">;
