@@ -1,54 +1,28 @@
-import { Count } from "@/types/interfaces";
 import { apiSlice } from "../services/apiSlice";
-// TODO: refactor interfaces in types/interfaces
-interface Dealer {
-  user: number;
-  first_name: string;
-  middle_name: string;
-  last_name: string;
-  second_last_name: string;
-  gender: string;
-  birthdate: string;
-  email: string;
-  created_by: number;
-}
+import { Count, Dealer, RegisterDealerParams } from "@/types/interfaces";
+import { EndpointBuilder } from "@reduxjs/toolkit/query/react";
+const DEALER_URL = "/register/dealer-profile/";
 
-const DealerApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    dealerList: builder.query<Dealer[], void>({
-      query: () => "/register/dealer-profile/",
-    }),
+const createDealerEndpoints = (builder: EndpointBuilder<any, any, any>) => ({
+  dealerList: builder.query<Dealer[], void>({
+    query: () => DEALER_URL,
+  }),
 
-    dealerCount: builder.query<Count, void>({
-      query: () => "register/dealer-profile/count/",
-    }),
+  dealerCount: builder.query<Count, void>({
+    query: () => `${DEALER_URL}count/`,
+  }),
 
-    registerDealer: builder.mutation({
-      query: ({
-        first_name,
-        middle_name,
-        last_name,
-        second_last_name,
-        gender,
-        birthdate,
-        email,
-        created_by,
-      }) => ({
-        url: "/register/dealer-profile/",
-        method: "POST",
-        body: {
-          first_name,
-          middle_name,
-          last_name,
-          second_last_name,
-          gender,
-          birthdate,
-          email,
-          created_by,
-        },
-      }),
+  registerDealer: builder.mutation<Dealer, RegisterDealerParams>({
+    query: (dealerData: Dealer) => ({
+      url: DEALER_URL,
+      method: "POST",
+      body: dealerData,
     }),
   }),
+});
+
+const DealerApiSlice = apiSlice.injectEndpoints({
+  endpoints: createDealerEndpoints,
 });
 
 export const {

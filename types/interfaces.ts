@@ -12,3 +12,17 @@ export interface User {
   is_collector: boolean;
   has_profile: boolean;
 }
+
+export interface Dealer {
+  user: number;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  second_last_name: string;
+  gender: string;
+  birthdate: string;
+  email: string;
+  created_by: number;
+}
+
+export type RegisterDealerParams = Omit<Dealer, "user">;
