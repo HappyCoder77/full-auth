@@ -18,11 +18,12 @@ export default function RegionalManagerList() {
   const {
     data: regionalManagers,
     isLoading,
+    isFetching,
     isError,
     error,
   } = useRegionalManagerListQuery();
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return (
       <div className="flex justify-center items-center h-64">
         <Spinner sm />
@@ -34,7 +35,9 @@ export default function RegionalManagerList() {
     return (
       <div className="text-center text-red-500">
         Error:{" "}
-        {error instanceof Error ? error.message : "An unknown error occurred"}
+        {error instanceof Error
+          ? error.message
+          : "ha ocurrido un error interno al consultar los datos"}
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import { apiSlice } from "../services/apiSlice";
+import { Count } from "@/types/interfaces";
 
 interface LocalManager {
   user: number;
@@ -16,6 +17,10 @@ const LocalManagerApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     localManagerList: builder.query<LocalManager[], void>({
       query: () => "/register/local-manager-profile/",
+    }),
+
+    localManagerCount: builder.query<Count, void>({
+      query: () => "register/local-manager-profile/count/",
     }),
 
     registerLocalManager: builder.mutation({
@@ -46,5 +51,8 @@ const LocalManagerApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useLocalManagerListQuery, useRegisterLocalManagerMutation } =
-  LocalManagerApiSlice;
+export const {
+  useLocalManagerListQuery,
+  useLocalManagerCountQuery,
+  useRegisterLocalManagerMutation,
+} = LocalManagerApiSlice;
