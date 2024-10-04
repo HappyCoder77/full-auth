@@ -1,5 +1,6 @@
+import { Count } from "@/types/interfaces";
 import { apiSlice } from "../services/apiSlice";
-
+// TODO: refactor interfaces in types/interfaces
 interface Dealer {
   user: number;
   first_name: string;
@@ -16,6 +17,10 @@ const DealerApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     dealerList: builder.query<Dealer[], void>({
       query: () => "/register/dealer-profile/",
+    }),
+
+    dealerCount: builder.query<Count, void>({
+      query: () => "register/dealer-profile/count/",
     }),
 
     registerDealer: builder.mutation({
@@ -46,4 +51,8 @@ const DealerApiSlice = apiSlice.injectEndpoints({
   }),
 });
 
-export const { useDealerListQuery, useRegisterDealerMutation } = DealerApiSlice;
+export const {
+  useDealerListQuery,
+  useDealerCountQuery,
+  useRegisterDealerMutation,
+} = DealerApiSlice;

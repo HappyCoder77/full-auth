@@ -38,11 +38,6 @@ export default function LocalManagerList() {
 
   return (
     <div className="overflow-x-auto">
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <h3 className="text-2xl font-bold tracking-tight text-gray-900">
-          Dealers
-        </h3>
-      </div>
       <table className="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
         <thead className="bg-primary text-black">
           <tr>

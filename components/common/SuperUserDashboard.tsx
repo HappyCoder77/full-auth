@@ -1,15 +1,23 @@
 "use client";
 
+import { User } from "@/types/interfaces";
 import { List, Spinner } from "@/components/common";
 import Link from "next/link";
 import { useRegionalManagerCountQuery } from "@/redux/features/regionalManagerApiSlice";
 import { useLocalManagerCountQuery } from "@/redux/features/localManagerApiSlice";
-import { User } from "@/types/interfaces";
+import { useDealerCountQuery } from "@/redux/features/dealerApiSlice";
 
 interface Props {
   user: User;
 }
 export default function SuperUserDashboard({ user }: Props) {
+  const config = [
+    {
+      label: "Email Address",
+      value: user?.email,
+    },
+  ];
+
   const {
     data: totalRegionalManagers,
     isLoading: isLoadingRegionalManagers,
@@ -22,12 +30,11 @@ export default function SuperUserDashboard({ user }: Props) {
     isFetching: isFetchingLocalManagers,
   } = useLocalManagerCountQuery();
 
-  const config = [
-    {
-      label: "Email Address",
-      value: user?.email,
-    },
-  ];
+  const {
+    data: totalDealers,
+    isLoading: isLoadingDealers,
+    isFetching: isFetchingDealers,
+  } = useDealerCountQuery();
 
   return (
     <>
@@ -72,6 +79,25 @@ export default function SuperUserDashboard({ user }: Props) {
                   </span>
                 ) : (
                   totalLocalManagers?.total ?? "No data"
+                )}
+                {")"}
+              </h3>
+            </div>
+          </header>
+        </Link>
+        <Link href="/dealer/list/">
+          <header className="bg-white shadow">
+            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+              <h3 className="text-3xl font-bold tracking-tight text-blue-600">
+                Detallistas {"("}
+                {isLoadingDealers || isFetchingDealers ? (
+                  <span
+                    style={{ display: "inline-flex", alignItems: "center" }}
+                  >
+                    <Spinner sm />
+                  </span>
+                ) : (
+                  totalDealers?.total ?? "No data"
                 )}
                 {")"}
               </h3>
