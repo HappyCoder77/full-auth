@@ -47,12 +47,6 @@ export default function Page() {
       </header>
       <main className="mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8">
         <List config={config} />
-
-        {user && user.is_superuser && <SuperUserDashboard email={user.email} />}
-        {user && user.is_superuser && <RegionalManagerList />}
-        {user && user.is_superuser && <LocalManagerList />}
-        {user && user.is_superuser && <SponsorList />}
-        {user && user.is_superuser && <DealerList />}
         {user && user.is_regionalmanager && <LocalManagerList />}
         {user && user.is_localmanager && <SponsorList />}
         {user && user.is_sponsor && <DealerList />}
