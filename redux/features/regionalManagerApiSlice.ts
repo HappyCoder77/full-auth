@@ -12,12 +12,19 @@ interface RegionalManager {
   created_by: number;
 }
 
+interface Count {
+  total: number;
+}
+
 const RegionalManagerApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     regionalManagerList: builder.query<RegionalManager[], void>({
       query: () => "/register/regional-manager-profile/",
     }),
 
+    regionalManagerCount: builder.query<Count, void>({
+      query: () => "register/regional-manager-profile/count/",
+    }),
     registerRegionalManager: builder.mutation({
       query: ({
         first_name,
@@ -48,5 +55,6 @@ const RegionalManagerApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useRegionalManagerListQuery,
+  useRegionalManagerCountQuery,
   useRegisterRegionalManagerMutation,
 } = RegionalManagerApiSlice;
