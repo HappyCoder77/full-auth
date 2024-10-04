@@ -54,3 +54,17 @@ export interface LocalManager {
 }
 
 export type RegisterLocalManagerParams = Omit<LocalManager, "user">;
+
+export interface Sponsor {
+  user: number;
+  first_name: string;
+  middle_name: string;
+  last_name: string;
+  second_last_name: string;
+  gender: string;
+  birthdate: string;
+  email: string;
+  created_by: number;
+}
+
+export type RegisterSponsorParams = Omit<Sponsor, "user">;

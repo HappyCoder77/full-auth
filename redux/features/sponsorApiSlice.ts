@@ -1,54 +1,28 @@
-import { Count } from "@/types/interfaces";
+import { Count, Sponsor, RegisterSponsorParams } from "@/types/interfaces";
 import { apiSlice } from "../services/apiSlice";
+import { EndpointBuilder } from "@reduxjs/toolkit/query";
 
-interface Sponsor {
-  user: number;
-  first_name: string;
-  middle_name: string;
-  last_name: string;
-  second_last_name: string;
-  gender: string;
-  birthdate: string;
-  email: string;
-  created_by: number;
-}
+const SPONSOR_URL = "/register/sponsor-profile/";
+const createSponsorEndpoints = (builder: EndpointBuilder<any, any, any>) => ({
+  sponsorList: builder.query<Sponsor[], void>({
+    query: () => SPONSOR_URL,
+  }),
 
-const SponsorApiSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
-    sponsorList: builder.query<Sponsor[], void>({
-      query: () => "/register/sponsor-profile/",
-    }),
+  sponsorCount: builder.query<Count, void>({
+    query: () => `${SPONSOR_URL}count/`,
+  }),
 
-    sponsorCount: builder.query<Count, void>({
-      query: () => "register/sponsor-profile/count/",
-    }),
-
-    sponsorRegister: builder.mutation({
-      query: ({
-        first_name,
-        middle_name,
-        last_name,
-        second_last_name,
-        gender,
-        birthdate,
-        email,
-        created_by,
-      }) => ({
-        url: "/register/sponsor-profile/",
-        method: "POST",
-        body: {
-          first_name,
-          middle_name,
-          last_name,
-          second_last_name,
-          gender,
-          birthdate,
-          email,
-          created_by,
-        },
-      }),
+  sponsorRegister: builder.mutation<Sponsor, RegisterSponsorParams>({
+    query: (sponsorData) => ({
+      url: "/register/sponsor-profile/",
+      method: "POST",
+      body: sponsorData,
     }),
   }),
+});
+
+const SponsorApiSlice = apiSlice.injectEndpoints({
+  endpoints: createSponsorEndpoints,
 });
 
 export const {
