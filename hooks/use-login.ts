@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { setAuth, setUser } from "@/redux/features/authSlice";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { LoginCredentials } from "@/types/authInterfaces";
 
 /**
  * Hook personalizado para manejar el inicio de sesión de usuarios.
@@ -20,10 +21,10 @@ import { useRouter } from "next/navigation";
  * @returns {Object} errors - Objeto que contiene los errores de validación del formulario.
  */
 
-interface FormValues {
-  email: string;
-  password: string;
-}
+// interface FormValues {
+//   email: string;
+//   password: string;
+// }
 export default function useLogin() {
   const dispatch = useAppDispatch();
   const [login, { isLoading }] = useLoginMutation();
@@ -33,14 +34,14 @@ export default function useLogin() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({
+  } = useForm<LoginCredentials>({
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: LoginCredentials) => {
     login(data)
       .unwrap()
       .then((user) => {
