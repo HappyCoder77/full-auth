@@ -19,6 +19,10 @@ const createLocalManagerEndpoints = (
     query: () => `${LOCALMANAGER_URL}count/`,
   }),
 
+  localManagerCountByCreator: builder.query<Count, number>({
+    query: (creator_id) => `${LOCALMANAGER_URL}count-by-creator/${creator_id}`,
+  }),
+
   registerLocalManager: builder.mutation<
     LocalManager,
     RegisterLocalManagerParams
@@ -38,5 +42,6 @@ const LocalManagerApiSlice = apiSlice.injectEndpoints({
 export const {
   useLocalManagerListQuery,
   useLocalManagerCountQuery,
+  useLocalManagerCountByCreatorQuery,
   useRegisterLocalManagerMutation,
 } = LocalManagerApiSlice;

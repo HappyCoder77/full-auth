@@ -3,6 +3,7 @@ export interface Count {
 }
 
 export interface User {
+  id: number;
   email: string;
   is_superuser: boolean;
   is_regionalmanager: boolean;

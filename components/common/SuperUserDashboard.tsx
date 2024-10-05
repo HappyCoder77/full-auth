@@ -1,12 +1,12 @@
 "use client";
 
-import { User } from "@/types/interfaces";
 import { List, Spinner } from "@/components/common";
 import Link from "next/link";
 import { useRegionalManagerCountQuery } from "@/redux/features/regionalManagerApiSlice";
 import { useLocalManagerCountQuery } from "@/redux/features/localManagerApiSlice";
 import { useSponsorCountQuery } from "@/redux/features/sponsorApiSlice";
 import { useDealerCountQuery } from "@/redux/features/dealerApiSlice";
+import { User } from "@/types/interfaces";
 
 interface Props {
   user: User;

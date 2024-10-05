@@ -10,3 +10,4 @@ export { default as RegionalManagerList } from "./RegionalManagerList";
 export { default as SponsorList } from "./SponsorList";
 export { default as DealerList } from "./DealerList";
 export { default as SuperUserDashboard } from "./SuperUserDashboard";
+export { default as RegionalManagerDashboard } from "./RegionalManagerDashboard";
