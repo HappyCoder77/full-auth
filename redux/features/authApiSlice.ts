@@ -2,17 +2,6 @@ import { apiSlice } from "../services/apiSlice";
 import { setUser } from "./authSlice";
 import { User } from "@/types/interfaces";
 
-interface SocialAuthArgs {
-  provider: string;
-  state: string;
-  code: string;
-}
-
-interface CreateUserResponse {
-  success: boolean;
-  user: User;
-}
-
 const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     retrieveUser: builder.query<User, void>({
@@ -26,18 +15,7 @@ const authApiSlice = apiSlice.injectEndpoints({
         }
       },
     }),
-    socialAuthenticate: builder.mutation<CreateUserResponse, SocialAuthArgs>({
-      query: ({ provider, state, code }) => ({
-        url: `/o/${provider}/?state=${encodeURIComponent(
-          state
-        )}&code=${encodeURIComponent(code)}`,
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/x-wwww-form-urlencoded",
-        },
-      }),
-    }),
+
     login: builder.mutation({
       query: ({ email, password }) => ({
         url: "/jwt/create/",
@@ -97,7 +75,6 @@ const authApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useRetrieveUserQuery,
-  useSocialAuthenticateMutation,
   useLoginMutation,
   useRegisterMutation,
   useVerifyMutation,

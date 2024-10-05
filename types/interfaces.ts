@@ -80,3 +80,9 @@ export interface Collector {
   birthdate: string;
   email: string;
 }
+
+export interface authState {
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  user: User | null;
+}
